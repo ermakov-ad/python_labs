@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import csv
+import collections
 
 def get_plot(file_name, plot_name, data):
     fig, gr = plt.subplots()
@@ -24,22 +25,14 @@ def get_plot(file_name, plot_name, data):
     plt.savefig(file_name + ".png", dpi=2000)
 
 
-preps = {}
-groups = {}
+preps = collections.defaultdict(lambda: [0] * 9)
+groups = collections.defaultdict(lambda: [0] * 9)
+
 with open("C:\\Users\\Admin\\Documents\\py\\mpl_lab\\students.csv", encoding='utf-8') as r_file:
     file_reader = csv.reader(r_file, delimiter=";")
     for row in file_reader:
-        try:
-            preps[row[0]][int(row[2]) - 2] += 1
-        except Exception:
-            preps[row[0]] = [0] * 9
-            preps[row[0]][int(row[2]) - 2] += 1
-
-        try:
-            groups[row[1]][int(row[2]) - 2] += 1
-        except Exception:
-            groups[row[1]] = [0] * 9
-            groups[row[1]][int(row[2]) - 2] += 1
+        preps[row[0]][int(row[2]) - 2] += 1
+        groups[row[1]][int(row[2]) - 2] += 1
 
 print(preps)
 print(groups)
