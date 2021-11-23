@@ -13,6 +13,7 @@ for n in range(1, 6):
             i += 2
         figure, gr = plt.subplots()
         gr.plot(x, y, marker='.', markersize=0.5, linestyle='')
+        gr.set_aspect('equal', adjustable='datalim')
         gr.set_title("Number of points: " + data[0])
-        plt.savefig("map " + str(n) + ".png", dpi=2000)
+        plt.savefig("map " + str(n) + ".png", dpi=500)
         print("map " + str(n) + " saved")
