@@ -24,5 +24,5 @@ for i in range(3):
     ax.set_xticklabels(labels)
     ax.set_xlabel('CARGO')
     ax.set_ylabel(y_label[i])
-    plt.savefig(y_label[i] + ".png", dpi=500)
+    plt.savefig(y_label[i] + ".png")
     print('graph ' + y_label[i] + ' saved')
