@@ -10,11 +10,7 @@ A = np.diag(-1*np.ones(l+1))
 A = np.delete(A, 0, axis=1)
 A = np.delete(A, l, axis=0)
 A += np.diag(np.ones(l))
-#data = np.zeros((256,l))
-#data[0] = np.copy(start_data)
-#for i in range(1, 256):
-#    data[i] = data[i-1] -0.5 * A.dot(data[i-1])
-#    data[i][0] = data[i][l-1]
+A[0][-1] = -1
 T = np.linspace(0, l-1, l)
 
 fig, ax = plt.subplots()
@@ -28,7 +24,6 @@ line, = ax.plot(T, start_data)
 def func(i):
     global data
     data = data - 0.5 * A.dot(data)
-    data[0] = data[len(data) - 1]
     line.set_ydata(data)
 
     return line,
