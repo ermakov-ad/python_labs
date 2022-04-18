@@ -50,11 +50,11 @@ class CalcMesh:
         # пересчитываем скорости
         self.vel(t)
 
-        r0 = np.sum(np.multiply(self.nodes[1], self.nodes[1]) + np.multiply(self.nodes[2], self.nodes[2]))
+        r0 = np.multiply(self.nodes[1], self.nodes[1]) + np.multiply(self.nodes[2], self.nodes[2])
         self.nodes += self.velocity * tau
-        r = np.sum(np.multiply(self.nodes[1], self.nodes[1]) + np.multiply(self.nodes[2], self.nodes[2]))
-        self.nodes[1] = np.dot(math.sqrt(r0 / r), self.nodes[1])
-        self.nodes[2] = np.dot(math.sqrt(r0 / r), self.nodes[2])
+        r = np.multiply(self.nodes[1], self.nodes[1]) + np.multiply(self.nodes[2], self.nodes[2])
+        self.nodes[1] = np.multiply(np.sqrt(np.multiply(r0, 1 / r)), self.nodes[1])
+        self.nodes[2] = np.multiply(np.sqrt(np.multiply(r0, 1 / r)), self.nodes[2])
 
     # Метод отвечает за запись текущего состояния сетки в снапшот в формате VTK
     def snapshot(self, snap_number):
